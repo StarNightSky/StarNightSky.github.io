@@ -1,7 +1,15 @@
 <head>
 <title>ECS p5js Project</title>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
 </head>
 <body style="background-color:mediumseagreen;">
+   <script src="sketch.js"></script>
 <h1 style="text-align:center;color:mediumvioletred;font-family:Trebuchet MS">Commented Code</h1>
 <h2 style="color:white;"><i>Small Celebration; by Teresa</i></h2>
 <pre><h4 style="color:brown">function draw() {
@@ -229,7 +237,7 @@ function draw() {
   }
 <i>//Makes a fuction called show</i>
   this.show = function() {
- <i>//choose 3 random values for red, green, blue</i>
+<i>//choose 3 random values for red, green, blue</i>
     fill(random(255), random(255), random(255))
     noStroke();
 <i>//Makes the speed in which stars move</i>
@@ -255,7 +263,7 @@ var stars = [];
 var speed;
 
 function setup() {
-  <i>//Makes the canvas's size</i>
+<i>//Makes the canvas's size</i>
   createCanvas(1350, 800);
   for (var i = 0; i < 800; i++) {
     stars[i] = new Star();
@@ -272,9 +280,58 @@ function draw() {
     stars[i].show()
   }
 }
+</h4></pre>
+<br>
+<br>
+
+<h2 style="color:white">Single Rose; By Matab<h2>
+<h4 style = "color:darkmagenta"><pre>
+var d = 8;
+var n = 5;
+var sliderD;
+var sliderN;
+
+function setup() {
+<i>//Creates a canvas</i>
+  createCanvas(1300, 700);
+  sliderD = createSlider(1, 20, 10, 1);
+  sliderN = createSlider(1, 20, 10, 1);
+  sliderD.input(draw);
+  sliderN.input(draw);
+}
+function draw() {
+  d = sliderD.value();
+  n = sliderN.value();
+  var k = n / d;
+<i>//Colors background black</i>
+  background(51);
+  push();
+  translate(width / 2, height / 2);
+
+  beginShape();
+<i>//Gives the flower's line a random color</i>
+  stroke(random(255), random(255), random(255));
+<i>//The flower's thickness<i>
+  strokeWeight(4);
+  for (var a = 0; a < TWO_PI * reduceDenominator(n, d); a += 0.02) {
+    var r = 200 * cos(k * a);
+    var x = r * cos(a);
+    var y = r * sin(a);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+  pop();
+  noLoop();
+}
+
+function reduceDenominator(numerator, denominator) {
+    function rec(a, b) {
+        return b ? rec(b, a % b) : a;
+    }
+    return denominator / rec(numerator, denominator);
+}
 
 </h4></pre>
 </body>
-
 
 
